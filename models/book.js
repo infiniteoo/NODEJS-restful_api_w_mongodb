@@ -36,3 +36,13 @@ const bookSchema = mongoose.Schema({
 });
 
 const Book = (module.exports = mongoose.model("Book", bookSchema));
+
+// get books
+module.exports.getBooks = (cb, limit) => {
+  Book.find(cb).limit(limit);
+};
+
+// get single book
+module.exports.getBookById = (id, cb) => {
+  Book.findById(id, cb);
+};
