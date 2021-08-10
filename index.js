@@ -25,6 +25,16 @@ app.get("/api/genres", (req, res) => {
   });
 });
 
+app.post("/api/genres", (req, res) => {
+  let genre = req.body;
+  Genre.addGenre(genre, (err, genre) => {
+    if (err) {
+      throw err;
+    }
+    res.json(genre);
+  });
+});
+
 app.get("/api/books/:id", (req, res) => {
   Book.getBookById(req.params.id, (err, book) => {
     if (err) {
