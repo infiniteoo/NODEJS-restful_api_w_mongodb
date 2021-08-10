@@ -46,3 +46,9 @@ module.exports.getBooks = (cb, limit) => {
 module.exports.getBookById = (id, cb) => {
   Book.findById(id, cb);
 };
+
+// add a book
+module.exports.addBook = (book, cb) => {
+  Book.create(book, cb);
+};
+
