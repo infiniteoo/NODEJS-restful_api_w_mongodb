@@ -105,6 +105,17 @@ app.put("/api/books/:_id", (req, res) => {
   });
 });
 
+// delete a book from the db
+app.delete("/api/books/:_id", (req, res) => {
+  let id = req.params._id;
+  Book.removeBook(id, (err, book) => {
+    if (err) {
+      throw err;
+    }
+
+    res.json(book);
+  });
+});
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
