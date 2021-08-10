@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
+
 const connectDB = require("./config/db");
 
 app.use(express.json({ extended: false }));
@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
   res.send("please use /api/books or /api/genres");
 });
 
+// get all genres
 app.get("/api/genres", (req, res) => {
   Genre.getGenres((err, genres) => {
     if (err) {
@@ -25,6 +26,7 @@ app.get("/api/genres", (req, res) => {
   });
 });
 
+// add a genre
 app.post("/api/genres", (req, res) => {
   let genre = req.body;
   Genre.addGenre(genre, (err, genre) => {
@@ -35,6 +37,18 @@ app.post("/api/genres", (req, res) => {
   });
 });
 
+// add a book
+app.post("/api/books", (req, res) => {
+  var book = req.body;
+  Book.addBook(book, (err, book) => {
+    if (err) {
+      throw err;
+    }
+    res.json(book);
+  });
+});
+
+// get a specific book by database id
 app.get("/api/books/:id", (req, res) => {
   Book.getBookById(req.params.id, (err, book) => {
     if (err) {
