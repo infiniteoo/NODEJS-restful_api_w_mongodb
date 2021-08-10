@@ -11,3 +11,31 @@ const genreSchema = mongoose.Schema({
     default: Date.now,
   },
 });
+
+const Genre = (module.exports = mongoose.model("Genre", genreSchema));
+
+// Get Genres
+module.exports.getGenres = (cb, limit) => {
+  Genre.find(cb).limit(limit);
+};
+
+// Add Genre
+module.exports.addGenre = (genre, cb) => {
+  Genre.create(genre, cb);
+};
+
+// update genre
+module.exports.updateGenre = (id, genre, options, cb) => {
+    const query = {_id: id},
+    const update = {
+        name: genre.name
+    }
+
+    Genre.findOneAndUpdate(query, update, options, cb);
+}
+
+// delete genre
+module.exports.removeGenre = (id, cb) => {
+    const query = {_id: id};
+    Genre.remove(query, cb);
+}
