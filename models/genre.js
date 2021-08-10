@@ -25,13 +25,12 @@ module.exports.addGenre = (genre, cb) => {
 };
 
 // update genre
-module.exports.updateGenre = (id, genre, options, cb) => {
-  const query = { _id: id };
-  const update = {
+module.exports.updateGenre = (id, genre, options, callback) => {
+  var query = { _id: id };
+  var update = {
     name: genre.name,
   };
-
-  Genre.findOneAndUpdate(query, update, options, cb);
+  Genre.findOneAndUpdate(query, update, options, callback);
 };
 
 // delete genre

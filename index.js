@@ -48,6 +48,18 @@ app.delete("/api/genres/:_id", (req, res) => {
   });
 });
 
+// update a genre
+app.put('/api/genres/:_id', (req, res) => {
+	var id = req.params._id;
+	var genre = req.body;
+	Genre.updateGenre(id, genre, {}, (err, genre) => {
+		if(err){
+			throw err;
+		}
+		res.json(genre);
+	});
+});
+
 // add a book
 app.post("/api/books", (req, res) => {
   var book = req.body;
