@@ -49,15 +49,15 @@ app.delete("/api/genres/:_id", (req, res) => {
 });
 
 // update a genre
-app.put('/api/genres/:_id', (req, res) => {
-	var id = req.params._id;
-	var genre = req.body;
-	Genre.updateGenre(id, genre, {}, (err, genre) => {
-		if(err){
-			throw err;
-		}
-		res.json(genre);
-	});
+app.put("/api/genres/:_id", (req, res) => {
+  var id = req.params._id;
+  var genre = req.body;
+  Genre.updateGenre(id, genre, {}, (err, genre) => {
+    if (err) {
+      throw err;
+    }
+    res.json(genre);
+  });
 });
 
 // add a book
@@ -84,6 +84,19 @@ app.get("/api/books", (req, res) => {
 // get a specific book by database id
 app.get("/api/books/:id", (req, res) => {
   Book.getBookById(req.params.id, (err, book) => {
+    if (err) {
+      throw err;
+    }
+
+    res.json(book);
+  });
+});
+
+// update a book in the db
+app.put("/api/books/:_id", (req, res) => {
+  let id = req.params._id;
+  let book = req.body;
+  Book.updateBook(id, book, {}, (err, book) => {
     if (err) {
       throw err;
     }
