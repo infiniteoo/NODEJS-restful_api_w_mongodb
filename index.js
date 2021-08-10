@@ -15,7 +15,15 @@ app.get("/", (req, res) => {
   res.send("please use /api/books or /api/genres");
 });
 
-app.get("/api/genres", (req, res) => {});
+app.get("/api/genres", (req, res) => {
+  Genre.getGenres((err, genres) => {
+    if (err) {
+      throw err;
+    }
+
+    res.json(genres);
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 
