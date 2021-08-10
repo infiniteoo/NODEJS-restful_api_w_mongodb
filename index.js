@@ -48,6 +48,16 @@ app.post("/api/books", (req, res) => {
   });
 });
 
+// get all books in db
+app.get("/api/books", (req, res) => {
+  Book.getBooks((err, books) => {
+    if (err) {
+      throw err;
+    }
+    res.json(books);
+  });
+});
+
 // get a specific book by database id
 app.get("/api/books/:id", (req, res) => {
   Book.getBookById(req.params.id, (err, book) => {
