@@ -5,12 +5,17 @@ const connectDB = require("./config/db");
 
 app.use(express.json({ extended: false }));
 
+const Genre = require("./models/genre");
+const Book = require("./models/book");
+
 //connect to mongoose
 connectDB();
 
 app.get("/", (req, res) => {
   res.send("please use /api/books or /api/genres");
 });
+
+app.get("/api/genres", (req, res) => {});
 
 const PORT = process.env.PORT || 5000;
 
