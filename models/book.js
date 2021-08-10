@@ -69,4 +69,8 @@ module.exports.updateBook = (id, book, options, cb) => {
   Book.findOneAndUpdate(query, update, options, cb);
 };
 
-
+// delete book
+module.exports.removeBook = (id, cb) => {
+  const query = { _id: id };
+  Book.remove(query, cb);
+};

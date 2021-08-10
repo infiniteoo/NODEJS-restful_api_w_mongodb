@@ -25,6 +25,16 @@ app.get("/api/genres", (req, res) => {
   });
 });
 
+app.get("/api/books/:id", (req, res) => {
+  Book.getBookById(req.params.id, (err, book) => {
+    if (err) {
+      throw err;
+    }
+
+    res.json(book);
+  });
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
